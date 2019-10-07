@@ -1,0 +1,44 @@
+.suple-card {
+    margin: 0 auto;
+    background-color: white;
+    width: 250px;
+    padding: 5px;
+    border-radius: 5px;
+    .suple-img-container {
+        background-color: white;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    .suple-info {
+        padding: 10px 5px;
+        display: flex;
+        align-content: space-between;
+        .price {
+            flex-grow: 1;
+            text-align: center;
+            flex-wrap: nowrap;
+            color: lightgreen;
+            font-weight: bolder;
+            font-size: 1.2rem;
+            .coin {
+                font-size: 0.7rem;
+            }
+        }
+        .suple-name {
+            width: 60%;
+            font-weight: bolder;
+            font-size: 0.7rem;
+            padding: 2px 4px;
+        }
+    }
+    .suple-seller {
+        font-weight: bolder;
+        font-size: 0.9rem; 
+        text-align: center; 
+    }
+    p {
+        margin: 0;
+    }
+}
