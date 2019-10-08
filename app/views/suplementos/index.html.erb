@@ -29,6 +29,10 @@
                     </div>
                     <p class="price"><%= suplemento.price / 10 %><span class='coin'> R$</span></p>
                 </div>
+                <% if suplemento.prices.length > 1 %>                
+                    <p class="price"><%= (suplemento.prices[0].price_cents - suplemento.prices[1].price_cents).to_f / 1000 %><span class='coin'> R$</span></p>
+                <% end %>
+                 <%= suplemento.store_code %>
                 <% if suplemento.prime == 'true' %>
                     <%= prime %>
                 <% end %>
