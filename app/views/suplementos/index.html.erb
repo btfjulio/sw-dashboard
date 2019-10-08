@@ -1,22 +1,39 @@
+<div class="search">
+    <%= form_tag suplementos_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control query",
+        placeholder: "Procurar suplemento.."
+        %>
+    <%= submit_tag "Search", class: "button-opc" %>
+    <% end %>
+</div>      
 <div class="grids mt-2">
     <% @suplementos.each do |suplemento|%>
-    <div class="suple-card">
-        <div class="suple-seller mb-2">
-            <p><%= suplemento.seller %></p>
-        </div>
-        <div class="suple-img-container">
-            <% unless suplemento.photo.nil? %>
-                <%= image_tag suplemento.photo %>
+        <div class="suple-card">
+            <%= link_to suplemento.link do %>
+                <div class="suple-seller mb-2">
+                    <p><%= suplemento.seller %></p>
+                </div>
+                <div class="suple-img-container">
+                    <% unless suplemento.photo.nil? %>
+                        <%= image_tag suplemento.photo %>
+                    <% end %>
+                </div>
+                <hr>
+                <div class="suple-info">
+                    <div class="suple-name">
+                        <%= suplemento.name %>
+                        <hr>
+                        <%= suplemento.brand %>
+                    </div>
+                    <p class="price"><%= suplemento.price / 10 %><span class='coin'> R$</span></p>
+                </div>
+                <% if suplemento.prime == 'true' %>
+                    <%= prime %>
+                <% end %>
             <% end %>
         </div>
-        <hr>
-        <div class="suple-info">
-            <div class="suple-name">
-                <p><%= suplemento.name %>
-            </div>
-            <p class="price"><%= suplemento.price / 10 %><span class='coin'> R$</span></p>
-        </div>
-    </div>
     <% end %>
 </div>
-<%= paginate @suplementos, class: "paginate" %>
+<%= paginate @suplementos, class: "pagination" %>

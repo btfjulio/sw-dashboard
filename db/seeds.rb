@@ -33,6 +33,8 @@ def save(suplemento)
         brand:  suplemento[:brand],
         price: suplemento[:price][:fractional].to_i/1000,
         photo: suplemento[:photo],
+        supershipping: suplemento[:supershipping],
+        prime: suplemento[:prime],
         store_id: 1 
         )
     product.valid?
@@ -56,6 +58,8 @@ def update(suplemento)
         product.price = suplemento[:price][:fractional].to_i/1000
         product.price_changed = product.price_cents_changed?
         product.photo = suplemento[:photo]
+        product.supershipping = suplemento[:supershipping]
+        product.prime = suplemento[:prime]
         product.store_id = 1    
     rescue => e
     end 
