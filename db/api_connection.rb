@@ -1,7 +1,7 @@
 require 'open-uri'
 
-def call_api()
-    url = "https://savewhey-api.herokuapp.com/api/v1/stores/1/suplementos?user_email=btfjulio@hotmail.com&user_token=ycMK41aheobQSHRCycz-"
+def call_api(store_id)
+    url = "https://savewhey-api.herokuapp.com/api/v1/stores/#{store_id}/suplementos?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"
     suple_serialized = open(url).read
     suplementos = JSON.parse(suple_serialized, {:symbolize_names => true})
     suplementos.each do |suplemento|
@@ -22,13 +22,13 @@ def save(suplemento)
         weight: suplemento[:weight],
         flavor: suplemento[:flavor],
         brand:  suplemento[:brand],
-        price: suplemento[:price][:fractional].to_i/1000,
+        price: suplemento[:price][:fractional].to_i / 100,
         photo: suplemento[:photo],
         supershipping: suplemento[:supershipping],
         prime: suplemento[:prime],
         store_id: suplemento[:store_id] 
         )
-    product.valid?
+    product.valid?   
     begin
         product.save!
     rescue => e
@@ -46,17 +46,19 @@ def update(suplemento)
         product.weight = suplemento[:weight]
         product.flavor = suplemento[:flavor]
         product.brand = suplemento[:brand]
-        product.price = suplemento[:price][:fractional].to_i/1000
+        product.price = suplemento[:price][:fractional].to_i / 100
         product.price_changed = product.price_cents_changed?
         product.photo = suplemento[:photo]
         product.supershipping = suplemento[:supershipping]
         product.prime = suplemento[:prime]
         product.store_id = suplemento[:store_id]    
     rescue => e
-    end 
+    end     
     product.save
     puts "Product #{product[:name]} updated on DB"
 end
 
-call_api()
+Store.all.each do |store|
+    call_api(store.id)
+end
 puts 'DB UPDATED'

@@ -12,6 +12,9 @@
     <% @suplementos.each do |suplemento|%>
         <div class="suple-card">
             <%= link_to suplemento.link do %>
+                <% if suplemento.store.photo.present? %>
+                    <%= image_tag  suplemento.store.photo, class: 'store-logo' %>
+                <% end %>
                 <div class="suple-seller mb-2">
                     <p><%= suplemento.seller %></p>
                 </div>
@@ -29,12 +32,12 @@
                     </div>
                     <p class="price"><%= suplemento.price / 10 %><span class='coin'> R$</span></p>
                 </div>
-                <% if suplemento.prices.length > 1 %>                
-                    <p class="price"><%= (suplemento.prices[0].price_cents - suplemento.prices[1].price_cents).to_f / 1000 %><span class='coin'> R$</span></p>
-                <% end %>
-                 <%= suplemento.store_code %>
-                <% if suplemento.prime == 'true' %>
-                    <%= prime %>
+                <span class='store-code'><%= suplemento.store_code %></span>                
+                <% if suplemento.prime == true %>
+                    <%= image_tag  "amz-prime.png", class: 'amz-prime-logo' %>
+                <% end %>               
+                <% if suplemento.supershipping == true %>
+                    <%= image_tag  "super-shipping.png", class: 'super-shipping' %>
                 <% end %>
             <% end %>
         </div>
