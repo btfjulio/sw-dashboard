@@ -39,6 +39,7 @@
                 <% if suplemento.supershipping == true %>
                     <%= image_tag  "super-shipping.png", class: 'super-shipping' %>
                 <% end %>
+                <p class="last-update"><%= "Last update: #{suplemento.last_update.day}/#{suplemento.last_update.month} - #{suplemento.last_update.hour} hrs"%></p>
             <% end %>
         </div>
     <% end %>
