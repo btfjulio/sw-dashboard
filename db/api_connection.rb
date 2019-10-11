@@ -26,6 +26,7 @@ def save(suplemento)
         photo: suplemento[:photo],
         supershipping: suplemento[:supershipping],
         prime: suplemento[:prime],
+        last_update: suplemento[:updated_at],
         store_id: suplemento[:store_id] 
         )
     product.valid?   
@@ -51,6 +52,7 @@ def update(suplemento)
         product.photo = suplemento[:photo]
         product.supershipping = suplemento[:supershipping]
         product.prime = suplemento[:prime]
+        product.last_update = suplemento[:updated_at]
         product.store_id = suplemento[:store_id]    
     rescue => e
     end     
