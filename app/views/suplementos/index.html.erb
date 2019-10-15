@@ -11,37 +11,40 @@
 <div class="grids mt-2">
     <% @suplementos.each do |suplemento|%>
         <div class="suple-card">
-            <%= link_to suplemento.link do %>
-                <% if suplemento.store.photo.present? %>
-                    <%= image_tag  suplemento.store.photo, class: 'store-logo' %>
-                <% end %>
+            <%= link_to suplemento[:link] do %>
+                <%
+=begin%>
+ <% if suplemento[:store][:photo].present? %>
+                    <%= image_tag  suplemento[:store][:photo], class: 'store-logo' %>
+                <% end %> 
+<%
+=end%>
                 <div class="suple-seller mb-2">
-                    <p><%= suplemento.seller %></p>
+                    <p><%= suplemento[:seller] %></p>
                 </div>
                 <div class="suple-img-container">
-                    <% unless suplemento.photo.nil? %>
-                        <%= image_tag suplemento.photo %>
+                    <% unless suplemento[:photo].nil? %>
+                        <%= image_tag suplemento[:photo] %>
                     <% end %>
                 </div>
                 <hr>
                 <div class="suple-info">
                     <div class="suple-name">
-                        <%= suplemento.name %>
+                        <%= suplemento[:name] %>
                         <hr>
-                        <%= suplemento.brand %>
+                        <%= suplemento[:brand] %>
                     </div>
-                    <p class="price"><%= suplemento.price / 10 %><span class='coin'> R$</span></p>
+                    <p class="price"><%= suplemento[:price][:fractional].to_d / 10000 %><span class='coin'> R$</span></p>
                 </div>
-                <span class='store-code'><%= suplemento.store_code %></span>                
-                <% if suplemento.prime == true %>
+                <span class='store-code'><%= suplemento[:store_code] %></span>                
+                <% if suplemento[:prime] == true %>
                     <%= image_tag  "amz-prime.png", class: 'amz-prime-logo' %>
                 <% end %>               
-                <% if suplemento.supershipping == true %>
+                <% if suplemento[:supershipping] == true %>
                     <%= image_tag  "super-shipping.png", class: 'super-shipping' %>
                 <% end %>
-                <p class="last-update"><%= "Last update: #{suplemento.last_update.day}/#{suplemento.last_update.month} - #{suplemento.last_update.hour} hrs"%></p>
+                <p class="last-update"><%= "Last update: #{suplemento[:last_update]}"%></p>
             <% end %>
         </div>
     <% end %>
 </div>
-<%= paginate @suplementos, class: "pagination" %>
