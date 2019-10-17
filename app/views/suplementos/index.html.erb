@@ -5,9 +5,12 @@
         class: "form-control query",
         placeholder: "Procurar suplemento.."
         %>
+        <%= check_box_tag 'changed', true %>
     <%= submit_tag "Search", class: "button-opc" %>
     <% end %>
-</div>      
+</div>    
+
+</div>  
 <div class="grids mt-2">
     <% @suplementos.each do |suplemento|%>
         <div class="suple-card">
@@ -53,15 +56,15 @@
     <% if @headers[:total_pages].to_i <= 15 %>
         <% (1..@headers[:total_pages].to_i).each do |page| %>
             <% if page == params[:page].to_i || (params[:page].nil? && page == 1) %>
-                <%= link_to page, { query: params[:query], page: page }, class: 'current' %>
+                <%= link_to page, { changed: params[:changed], query: params[:query], page: page }, class: 'current' %>
             <% else %>
-                <%= link_to page, { query: params[:query], page: page } %>
+                <%= link_to page, { changed: params[:changed], query: params[:query], page: page } %>
             <% end %>
         <% end %>
     <% end %>
-    <% if params[:page].present? %>
-        <%= link_to "Next >>", { query: params[:query], page: params[:page].to_i + 1 } %>
+    <% if params[:page].present? %> 
+        <%= link_to "Next >>", { changed: params[:changed], query: params[:query], page: params[:page].to_i + 1 } %>
     <% else %>
-        <%= link_to "Next >>", { query: params[:query], page: 2 } %>
+        <%= link_to "Next >>", { changed: params[:changed], query: params[:query], page: 2 } %>
     <% end %>
 </div>
