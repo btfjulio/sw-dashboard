@@ -49,7 +49,7 @@
                 <p class="last-update"><%= "Last update: #{suplemento[:updated_at]}"%></p>
                 <p class="last-update"><%= "Last update: #{suplemento[:promo]}"%></p>
             <% end %>
-            <%= button_tag "Copy", type: "button", remote:true, class: "clipboard-btn", data: {clipboard_action: "copy", clipboard_text: "#{suplemento[:link]}"} %>
+            <%= button_tag "Copy", type: "button", class: "clipboard-btn", data: {clipboard_action: "copy", clipboard_text: "#{suplemento[:link]}"} %>
         </div>
     <% end %>
 </div>
