@@ -1,5 +1,5 @@
 var bitlyButton = document.getElementById(`<%= @suplemento[:store_code] %>`)
-bitlyButton.innerHTML = `<input type="text" value="<%= @shorten_url %>" id="myLink-<%= @suplemento[:store_code] %>">`
+bitlyButton.innerHTML = `<input type="text" value="<%= @shorten_url %>" id="myLink-<%= @suplemento[:store_code] %>" contenteditable="true" readonly="false">`
 var valToCopy = document.getElementById(`myLink-<%= @suplemento[:store_code] %>`)
 valToCopy.select();
 valToCopy.setSelectionRange(0, 99999);
