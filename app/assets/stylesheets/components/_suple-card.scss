@@ -1,4 +1,7 @@
 .suple-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     max-width: 45vw;
     margin: 0 auto;
     background-color: white;
@@ -70,4 +73,6 @@
     font-weight: bolder;
     padding: 5px;
     border-radius: 5%;
+    display: block;
+    text-align: center;
 }

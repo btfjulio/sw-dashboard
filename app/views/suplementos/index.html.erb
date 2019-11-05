@@ -49,7 +49,11 @@
                 <p class="last-update"><%= "Last update: #{suplemento[:updated_at]}"%></p>
                 <p class="last-update"><%= "Last update: #{suplemento[:promo]}"%></p>
             <% end %>
-            <%= button_tag "Copy", type: "button", class: "clipboard-btn", data: {clipboard_action: "copy", clipboard_text: "#{suplemento[:link]}"} %>
+            <%
+=begin%>
+ <%= button_tag "Copy", type: "button", class: "clipboard-btn", data: {clipboard_action: "copy", clipboard_text: "#{suplemento[:link]}"} %> 
+<%
+=end%>
             <%= link_to "Create BitLy", suplementos_get_bitlink_path(suplemento: suplemento), remote:true, id: suplemento[:store_code], class:"bitlys" %>
         </div>
     <% end %>
