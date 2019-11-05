@@ -3,6 +3,7 @@ ruby '2.6.3'
 
 gem 'bootsnap', require: false
 gem 'clipboard-rails'
+gem 'bitly'
 gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'

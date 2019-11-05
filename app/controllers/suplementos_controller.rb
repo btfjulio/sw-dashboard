@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class SuplementosController < ApplicationController
-    skip_before_action :authenticate_user!, only: %i[index]
+    skip_before_action :authenticate_user!, only: %i[index get_bitlink]
     def index
         url = "https://savewhey-api.herokuapp.com/api/v1/suplementos?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"
         if params[:query].present?
@@ -19,6 +19,10 @@ class SuplementosController < ApplicationController
         @suplementos = JSON.parse(suple_serialized, {:symbolize_names => true})[1..]
     end
 
-    def bitlinks
+    def get_bitlink
+        @suplemento = params[:suplemento]
+        client = Bitly.client
+        @shorten_url = Bitly.client.shorten(@suplemento[:link]).short_url
     end
+
 end
