@@ -18,4 +18,7 @@ class SuplementosController < ApplicationController
         @headers = JSON.parse(suple_serialized, {:symbolize_names => true})[0]
         @suplementos = JSON.parse(suple_serialized, {:symbolize_names => true})[1..]
     end
+
+    def bitlinks
+    end
 end
