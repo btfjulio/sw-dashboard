@@ -1,7 +1,4 @@
 //get button from requested link
 var bitlyButton = document.getElementById(`<%= @suplemento[:store_code] %>`)
-bitlyButton.innerHTML = `<input value="<%= @shorten_url %>" data-clipboard-text="<%= @shorten_url %>" id="myLink-<%= @suplemento[:store_code] %>">`
+bitlyButton.innerHTML = `<input value="<%= @shorten_url %>">`
 //get new value to copy
-var valToCopy = document.getElementById(`myLink-<%= @suplemento[:store_code] %>`)
-var clipboard = new Clipboard(`<%= @shorten_url %>`);
-// add to ios compatibility

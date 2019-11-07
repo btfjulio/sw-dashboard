@@ -1,9 +1,19 @@
 <div class="search">
     <%= form_tag suplementos_path, method: :get do %>
-        <%= text_field_tag :query,
+        <%= text_field_tag :name,
         params[:query],
         class: "form-control query",
         placeholder: "Procurar suplemento.."
+        %>  
+        <%= text_field_tag :store,
+        params[:store],
+        class: "form-control query",
+        placeholder: "Procurar loja.."
+        %>
+        <%= text_field_tag :seller,
+        params[:seller],
+        class: "form-control query",
+        placeholder: "Procurar mktplace.."
         %>
         <%= check_box_tag 'changed', true %>
     <%= submit_tag "Search", class: "button-opc" %>
@@ -44,7 +54,7 @@
  <span class='store-code'><%= suplemento[:store_code] %></span>                 
 <%
 =end%>
-                <% if suplemento[:prime] == true %>
+                <% if suplemento[:prime] == true %>]
                     <%= image_tag  "amz-prime.png", class: 'amz-prime-logo' %>
                 <% end %>               
                 <% if suplemento[:supershipping] == true %>

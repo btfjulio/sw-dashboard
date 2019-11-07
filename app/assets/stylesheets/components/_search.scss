@@ -50,3 +50,13 @@
       }
     }
   }
+
+
+  @media (max-width: 720px) 
+{
+  form 
+   {
+    flex-direction: column;
+    align-items: center
+   }
+}
