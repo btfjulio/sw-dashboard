@@ -15,8 +15,14 @@
         class: "form-control query",
         placeholder: "Procurar mktplace.."
         %>
-        <%= check_box_tag 'changed', true %>
-        <%= check_box_tag 'supershipping', true %>
+        <div class="checkbox">
+            <p>Price Change</p>
+            <%= check_box_tag 'changed', true %>
+        </div>
+        <div class="checkbox">
+            <p>Shipping</p>
+            <%= check_box_tag 'supershipping', true %>
+        </div>
     <%= submit_tag "Search", class: "button-opc" %>
     <% end %>
 </div>    
