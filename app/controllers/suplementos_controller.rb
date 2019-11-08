@@ -20,7 +20,7 @@ class SuplementosController < ApplicationController
             url = url + "&page=#{params[:page]}"
         end
         url = url + "&changed=#{params[:changed]}" if params[:changed].present?
-        url = url + "&supershipping=#{params[:supershipping]}" if params[:supershipping].present?
+        url = url + "&changed=#{params[:changed]}" if params[:changed].present?
         suple_serialized = open(url).read
         @headers = JSON.parse(suple_serialized, {:symbolize_names => true})[0]
         @suplementos = JSON.parse(suple_serialized, {:symbolize_names => true})[1..]
