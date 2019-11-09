@@ -23,7 +23,7 @@
   // Medium devices (tablets, 768px and up)
   @media (min-width: 768px) {
     .grids {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     }
   }
   
