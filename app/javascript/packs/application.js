@@ -1,4 +1,7 @@
 import "bootstrap";
 import { Clipboard } from 'clipboard';
 
-export default Clipboard;
+var btns = document.querySelectorAll('.clipboard-btn');
+btns.forEach(function(btn){
+    new Clipboard(btn); 
+});

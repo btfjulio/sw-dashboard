@@ -23,6 +23,10 @@
             <p>Shipping</p>
             <%= check_box_tag 'supershipping', true %>
         </div>
+        <div class="checkbox">
+            <p>Discount</p>
+            <%= check_box_tag 'average', true %>
+        </div>
     <%= submit_tag "Search", class: "button-opc" %>
     <% end %>
 </div>    
@@ -55,6 +59,9 @@
                         <%= suplemento[:brand] %>
                     </div>
                     <p class="price"><%= (suplemento[:price][:fractional].to_f / 10000).to_d %><span class='coin'> R$</span></p>
+                    <% if suplemento[:diff] && params[:average] %>
+                        <p class="price discount"><%= suplemento[:diff] %><span class='coin'> %</span></p>
+                    <% end %>
                 </div>
                 <span class='store-code'><%= suplemento[:store_code] %></span>
                 <% if suplemento[:prime] == true %>
@@ -84,15 +91,15 @@
     <% if @headers[:total_pages].to_i <= 15 %>
         <% (1..@headers[:total_pages].to_i).each do |page| %>
             <% if page == params[:page].to_i || (params[:page].nil? && page == 1) %>
-                <%= link_to page, { supershipping: params[:supershipping], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name], page: page }, class: 'current' %>
+                <%= link_to page, { supershipping: params[:supershipping], average: params[:average], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name], page: page }, class: 'current' %>
             <% else %>
-                <%= link_to page, {supershipping: params[:supershipping], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name], page: page } %>
+                <%= link_to page, {supershipping: params[:supershipping], average: params[:average], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name], page: page } %>
             <% end %>
         <% end %>
     <% end %>
     <% if params[:page].present? %> 
-        <%= link_to "Next >>", { supershipping: params[:supershipping], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name] , page: params[:page].to_i + 1 } %>
+        <%= link_to "Next >>", { supershipping: params[:supershipping], average: params[:average], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name] , page: params[:page].to_i + 1 } %>
     <% else %>
-        <%= link_to "Next >>", { supershipping: params[:supershipping], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name] , page: 2 } %>
+        <%= link_to "Next >>", { supershipping: params[:supershipping], average: params[:average], changed: params[:changed], seller: params[:seller], store: params[:store], name: params[:name] , page: 2 } %>
     <% end %>
 </div>

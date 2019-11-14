@@ -4,6 +4,10 @@ class SuplementosController < ApplicationController
     skip_before_action :authenticate_user!, only: %i[index get_bitlink]
     def index
         url = "https://savewhey-api.herokuapp.com/api/v1/suplementos?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"
+        if params[:average].present?
+            search =  params[:average].split(' ').join('+')
+            url = url + "&average=#{search}"
+        end
         if params[:seller].present?
             search =  params[:seller].split(' ').join('+')
             url = url + "&seller=#{search}"
