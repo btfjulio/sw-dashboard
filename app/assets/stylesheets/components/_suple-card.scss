@@ -73,12 +73,25 @@
 
 }
 
-.bitlys {
-    background-color: red;
-    color: white !important;
-    font-weight: bolder;
-    padding: 5px;
-    border-radius: 5%;
-    display: block;
-    text-align: center;
+.btns-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .btn {
+        font-weight: bolder;
+        padding: 5px;
+        border-radius: 5%;
+        display: block;
+        text-align: center;
+    }
+    .bitlys {
+        margin-top: 2px;
+        background-color: red;
+        color: white !important;
+        font-weight: bolder;
+        padding: 5px;
+        border-radius: 5%;
+        display: block;
+        text-align: center;
+    }
 }
