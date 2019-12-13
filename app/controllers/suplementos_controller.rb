@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'json'
 
 class SuplementosController < ApplicationController
     skip_before_action :authenticate_user!, only: %i[index get_bitlink]
@@ -31,9 +32,14 @@ class SuplementosController < ApplicationController
     end
 
     def get_bitlink
-        @suplemento = params[:suplemento]
         client = Bitly.client
-        @shorten_url = Bitly.client.shorten(@suplemento[:link]).short_url
+        @suplemento = params[:suplemento]
+        if params[:choice].present?
+            link = params[:suplemento][:link].gsub('lojacorpoperfeito',params[:choice])
+            @shorten_url = Bitly.client.shorten(link).short_url
+        else
+            @shorten_url = Bitly.client.shorten(@suplemento[:link]).short_url
+        end
     end
 
 end

@@ -36,13 +36,6 @@
     <% @suplementos.each do |suplemento|%>
         <div class="suple-card">
             <%= link_to suplemento[:link] do %>
-                <%
-=begin%>
- <% if suplemento[:store][:photo].present? %>
-                    <%= image_tag  suplemento[:store][:photo], class: 'store-logo' %>
-                <% end %> 
-<%
-=end%>
                 <div class="suple-seller mb-2">
                     <h4><%= suplemento[:seller] %></h4>
                 </div>
@@ -62,24 +55,29 @@
                         <p class="price discount"><%= suplemento[:diff] %><span class='coin'> %</span></p>
                     <% end %>
                 </div>
-                <%# <span class='store-code'><%= suplemento[:store_code] %>
                 <% if suplemento[:prime] == true %>
                     <%= image_tag  "amz-prime.png", class: 'amz-prime-logo' %>
                 <% end %>               
                 <% if suplemento[:supershipping] == true %>
                     <%= image_tag  "super-shipping.png", class: 'super-shipping' %>
                 <% end %>
-                <%
-=begin%>
- <p class="last-update"><%= "Last update: #{suplemento[:updated_at]}"%></p>
-                <p class="last-update"><%= "Last update: #{suplemento[:promo]}"%></p> 
-<%
-=end%>
             <% end %>   
             <div class="btns-container">
                 <%= button_tag "Copy Link", type: "button", class: "clipboard-btn btn btn-primary", data: {clipboard_action: "copy", clipboard_text: "#{suplemento[:link]}"} %> 
-
+            <% if suplemento[:store_id] == 4 %>
+                <div class="dropdown"  id="<%=suplemento[:store_code]%>">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Store
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <% ['lojacorpoperfeito', 'corpoidealsuplementos', 'boasaudesuplementos'].each do |store| %>
+                            <%= link_to "#{store}", suplementos_get_bitlink_path(suplemento: suplemento, choice:store), remote: true, class:"dropdown-item" %>
+                        <% end %>
+                    </div>
+                </div>
+            <% else %>
                 <%= link_to "Create BitLy", suplementos_get_bitlink_path(suplemento: suplemento), remote:true, id: suplemento[:store_code], class:"bitlys" %>
+            <% end %>
             </div>
         </div>
     <% end %>
