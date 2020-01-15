@@ -9,6 +9,10 @@ class SuplementosController < ApplicationController
             search =  params[:average].split(' ').join('+')
             url = url + "&average=#{search}"
         end
+        if params[:promo].present?
+            search =  params[:promo].split(' ').join('+')
+            url = url + "&promo=#{search}"
+        end
         if params[:seller].present?
             search =  params[:seller].split(' ').join('+')
             url = url + "&seller=#{search}"
