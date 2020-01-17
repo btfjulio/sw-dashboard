@@ -5,7 +5,7 @@ class SuplementosController < ApplicationController
     skip_before_action :authenticate_user!, only: %i[index get_bitlink]
     def index
         url = "https://savewhey-api.herokuapp.com/api/v1/suplementos?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"
-        params.each { |key, value| url = url + "&#{key}=#{value}" unless key == 'controller' || key == 'action' }
+        params.each { |key, value| url = url + "&#{key}=#{value}" unless ['controller', 'action', 'utf8'].include? key }
         suple_serialized = open(url).read
         @stores = get_stores()
         @headers = JSON.parse(suple_serialized, {:symbolize_names => true})[0]
