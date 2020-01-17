@@ -1,5 +1,4 @@
 //get button from requested link
-console.log('oi')
 var bitlyButton = document.getElementById(`<%= @suplemento[:store_code] %>`)
 bitlyButton.innerHTML = `<input id="C<%= @suplemento[:store_code] %>" value="<%= @shorten_url %>">
                          <button id="C<%= @suplemento[:store_code] %>BTN" data-clipboard-target="#C<%= @suplemento[:store_code] %>">

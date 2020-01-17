@@ -60,7 +60,7 @@
                     <% end %>
                 </div>
                 <% if suplemento[:promo] %>
-                    <p><%= suplemento[:promo] %></p>
+                    <p class="suple-seller"><%= suplemento[:promo] %></p>
                 <% end %> 
                 <% if suplemento[:prime] == true %>
                     <%= image_tag  "amz-prime.png", class: 'amz-prime-logo' %>
