@@ -1,4 +1,5 @@
 import "bootstrap";
+import { initSelect2 } from "./plugins/init_select2"
 
 const refreshStatus = () => {
     let list = document.querySelectorAll('.saudi_choice')
@@ -10,3 +11,4 @@ const refreshStatus = () => {
   }
   
 refreshStatus();
+initSelect2();

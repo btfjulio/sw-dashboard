@@ -1,41 +1,4 @@
-<div class="search">
-    <%= form_tag suplementos_path, method: :get do %>
-        <%= text_field_tag :name,
-        params[:query],
-        class: "form-control query",
-        placeholder: "Procurar suplemento.."
-        %>  
-        <%= text_field_tag :store,
-        params[:store],
-        class: "form-control query",
-        placeholder: "Procurar loja.."
-        %>
-        <%= text_field_tag :seller,
-        params[:seller],
-        class: "form-control query",
-        placeholder: "Procurar mktplace.."
-        %>
-        <div class="checkbox">
-            <p>Price Change</p>
-            <%= check_box_tag 'changed', true %>
-        </div>
-        <div class="checkbox">
-            <p>Shipping</p>
-            <%= check_box_tag 'supershipping', true %>
-        </div>
-        <div class="checkbox">
-            <p>Discount</p>
-            <%= check_box_tag 'average', true %>
-        </div>
-        <div class="checkbox">
-            <p>Promo</p>
-            <%= check_box_tag 'promo', true %>
-        </div>
-    <%= submit_tag "Search", class: "button-opc" %>
-    <% end %>
-</div>    
-
-</div>  
+<%= render 'search_form' %>     
 <div class="grids mt-2">
     <% @suplementos.each do |suplemento|%>
         <div class="suple-card">
