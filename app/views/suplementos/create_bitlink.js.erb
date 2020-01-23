@@ -1,0 +1,9 @@
+//get button from requested link
+var bitlyButton = document.querySelector(`form[data=<%= @suplemento %>]`)
+bitlyButton.innerHTML = `<input id="C<%= @suplemento %>" class="form-control" value="<%= @link %>">
+                         <button id="C<%= @suplemento %>BTN" class="btn btn-danger" data-clipboard-target="#C<%= @suplemento %>">
+                            Copy
+                         </button>`
+
+var btn = document.getElementById('C<%= @suplemento %>BTN');
+new Clipboard(btn); 

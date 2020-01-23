@@ -1,4 +1,5 @@
 <%= render 'search_form' %>     
+
 <div class="grids mt-2">
     <% @suplementos.each do |suplemento|%>
         <div class="suple-card">
@@ -32,23 +33,7 @@
                     <%= image_tag  "super-shipping.png", class: 'super-shipping' %>
                 <% end %>
             <% end %>   
-            <div class="btns-container">
-                <%= button_tag "Copy Link", type: "button", class: "clipboard-btn btn btn-primary", data: {clipboard_action: "copy", clipboard_text: "#{suplemento[:link]}"} %> 
-            <% if suplemento[:store_id] == 4 %>
-                <div class="dropdown"  id="<%=suplemento[:store_code]%>">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Store
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <% ['lojacorpoperfeito', 'corpoidealsuplementos', 'boasaudesuplementos'].each do |store| %>
-                            <%= link_to "#{store}", suplementos_get_bitlink_path(suplemento: suplemento, choice:store), remote: true, class:"dropdown-item" %>
-                        <% end %>
-                    </div>
-                </div>
-            <% else %>
-                <%= link_to "Create BitLy", suplementos_get_bitlink_path(suplemento: suplemento), remote:true, id: suplemento[:store_code], class:"bitlys" %>
-            <% end %>
-            </div>
+            <%= render 'bitly_generator', suplemento: suplemento %>  
         </div>
     <% end %>
 </div>

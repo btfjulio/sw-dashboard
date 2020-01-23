@@ -3,7 +3,7 @@ require 'json'
 require "i18n"
 
 class SuplementosController < ApplicationController
-    skip_before_action :authenticate_user!, only: %i[index get_bitlink]
+    skip_before_action :authenticate_user!, only: %i[index get_bitlink create_bitlink]
     def index
         url = "https://savewhey-api.herokuapp.com/api/v1/suplementos?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"   
         pg_params = get_params()
@@ -22,6 +22,25 @@ class SuplementosController < ApplicationController
             @shorten_url = Bitly.client.shorten(link).short_url
         else
             @shorten_url = Bitly.client.shorten(@suplemento[:link]).short_url
+        end
+    end
+
+    def create_bitlink
+        client = Bitly.client
+        @suplemento = params[:suplemento]
+        @link = params[:link]
+        choice = params[:choice].first
+        @link = change_cupom(@link, params[:cupom]) if params[:cupom].present?
+        @link = @link.gsub('lojacorpoperfeito', choice) if choice.present?
+        @link = Bitly.client.shorten(@link).short_url
+    end
+
+    def change_cupom(link, cupom)
+        case link.match(/(?<=(www).)(.*)(?=\.com)/)[2] 
+        when "lojacorpoperfeito"
+            @link.gsub(/vp=.+/, "vp=#{cupom}")
+        when "netshoes"
+            @link.gsub(/(?<=(campaign).)(.*)(?=\]])/, "#{cupom}")
         end
     end
 
