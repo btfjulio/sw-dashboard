@@ -8,7 +8,8 @@
         <%= select :store, 
         params[:query],  
         @stores, 
-        { include_blank: "Procurar loja.." },  
+        { include_blank: "Procurar loja.." },
+        id: "store-query",  
         class: "form-control query" 
         %>
         <%= text_field_tag :seller,
