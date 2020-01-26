@@ -7,12 +7,14 @@
             class: "form-control",
             placeholder: "Editar cupom.."
         %> 
-        <%= select :choice, 
-            params[:choice],  
-            ['lojacorpoperfeito', 'corpoidealsuplementos', 'boasaudesuplementos'], 
-            { include_blank: "Escolher loja.." },  
-            class: "form-control query" 
-        %>
+        <% if suplemento[:store_id] == 4 %>
+            <%= select :choice, 
+                params[:choice],  
+                ['lojacorpoperfeito', 'corpoidealsuplementos', 'boasaudesuplementos'], 
+                { include_blank: "Escolher loja.." },  
+                class: "form-control query" 
+            %>
+        <% end %>
         <%= submit_tag "Create Link", class: "btn btn-danger" %>
     <% end %>
 </div>

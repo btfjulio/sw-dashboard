@@ -3,7 +3,7 @@ require 'json'
 
 class SuplementosController < ApplicationController
     skip_before_action :authenticate_user!, only: %i[index get_bitlink create_bitlink]
-    def index
+    def index   
         url = "https://savewhey-api.herokuapp.com/api/v1/suplementos?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"   
         pg_params = get_params()
         pg_params.each { |key, value| url = url + "&#{key}=#{value.kind_of?(Array) ? value[0] : value}" unless ['controller', 'action', 'utf8'].include? key }
@@ -48,7 +48,7 @@ class SuplementosController < ApplicationController
     def get_stores
         api_endpoint = "https://savewhey-api.herokuapp.com/api/v1/stores?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"
         stores_serialized = open(api_endpoint).read
-        JSON.parse(stores_serialized, {:symbolize_names => true}).map { |item| [item[:name], item[:id]] }
+        JSON.parse(stores_serialized, {:symbolize_names => true})[:stores].map { |item| [item[:name], item[:id]] }
     end
 
     private
