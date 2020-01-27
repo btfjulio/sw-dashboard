@@ -3,10 +3,17 @@
     justify-content: center;
     margin-top: 5px;
     form {
-      width: 60%;
+      width: 80%;
       display: flex;
       justify-content: center;
       align-items: center;
+      .select2 {
+        font-size: 13px;
+        min-width: 160px;
+        li.select2-results__option {
+          font-size: 13px !important;
+        }
+      }
       .checkbox {
         display: flex;
         flex-direction: column;

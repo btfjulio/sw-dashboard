@@ -12,10 +12,9 @@
         id: "store-query",  
         class: "form-control query" 
         %>
-        <%= text_field_tag :seller,
-        params[:query],
-        class: "form-control query",
-        placeholder: "Procurar mktplace.."
+        <%= select_tag :seller, 
+            options_from_collection_for_select(@sellers, :to_s, :to_s), 
+            class: "form-control query" 
         %>
         <div class="checkbox">
             <p>Price Change</p>

@@ -8,7 +8,9 @@ class SuplementosController < ApplicationController
         pg_params = get_params()
         pg_params.each { |key, value| url = url + "&#{key}=#{value.kind_of?(Array) ? value[0] : value}" unless ['controller', 'action', 'utf8'].include? key }
         suple_serialized = open(url).read
-        @stores = get_stores()
+        api_response = get_stores()
+        @stores = api_response[:stores].map { |item| [item[:name], item[:id]] }
+        @sellers = api_response[:sellers].map { |item| item[:seller] }
         @headers = JSON.parse(suple_serialized, {:symbolize_names => true})[0]
         @suplementos = JSON.parse(suple_serialized, {:symbolize_names => true})[1..]
     end
@@ -28,7 +30,7 @@ class SuplementosController < ApplicationController
         client = Bitly.client
         @suplemento = params[:suplemento]
         @link = params[:link]
-        choice = params[:choice].first
+        choice = params[:choice]&.first
         @link = change_cupom(@link, params[:cupom]) if params[:cupom].present?
         @link = @link.gsub('lojacorpoperfeito', choice) if choice.present?
         @link = Bitly.client.shorten(@link).short_url
@@ -48,7 +50,11 @@ class SuplementosController < ApplicationController
     def get_stores
         api_endpoint = "https://savewhey-api.herokuapp.com/api/v1/stores?user_email=btfjulio@hotmail.com&user_token=x6nZcxz9jyaR68y3GEsy"
         stores_serialized = open(api_endpoint).read
-        JSON.parse(stores_serialized, {:symbolize_names => true})[:stores].map { |item| [item[:name], item[:id]] }
+        JSON.parse(stores_serialized, {:symbolize_names => true})
+    end
+
+    def parse_response(response, data)
+        response[data].map { |item| [item[:name], item[:id]] }
     end
 
     private
