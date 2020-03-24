@@ -13,7 +13,8 @@
         class: "form-control query" 
         %>
         <%= select_tag :seller, 
-            options_from_collection_for_select(@sellers, :to_s, :to_s), 
+            options_from_collection_for_select(@sellers, :to_s, :to_s),
+            prompt: "Procurar vendedor..", 
             class: "form-control query" 
         %>
         <div class="checkbox">
